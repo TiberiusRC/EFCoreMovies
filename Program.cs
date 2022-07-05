@@ -9,8 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("name = DefaultConnection"));
+//Connectionstring and NetTopologySuite to use cinema location based on Coordinates
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("name = DefaultConnection",sqlServer => sqlServer.UseNetTopologySuite()));
 
 var app = builder.Build();
 
