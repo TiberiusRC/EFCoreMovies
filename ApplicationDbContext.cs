@@ -1,4 +1,5 @@
 ﻿using EFCoreMovies.Entities;
+using EFCoreMovies.Entities.Seeding;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -23,7 +24,8 @@ namespace EFCoreMovies
             base.OnModelCreating(modelBuilder);  
             //All modelbuilder files have been moved to their seperate Config files in the Configurations folder  to reduce code                 
             //Implementing the modelbuilder files:
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());                
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            M3Seeding.Seed(modelBuilder);
 
         }
         //Setting the Entities(in plural) ( So that the tables are also queryable)
