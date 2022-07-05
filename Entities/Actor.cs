@@ -6,5 +6,7 @@
         public string Name { get; set; }
         public string Biography { get; set; }
         public DateTime? DateOfBirth { get; set; }
+        //Navigation property to MovieActor (Foreign key)(non skip method)
+        public HashSet<MovieActor> MovieActors { get; set; }
     }
 }
