@@ -6,7 +6,7 @@ namespace EFCoreMovies.Entities.Seeding
 {
     public static class M3Seeding
     {
-        // Because of the amount of text/Data in this file ,I copied the majority of the Seed data from the Course.
+        // Because of the amount of text/Data in this file ,I copied the majority of the Seed data from the Course (which was even suggested in the course)
         public static void Seed(ModelBuilder modelBuilder)
         {
             // Seed for Genre
@@ -25,12 +25,13 @@ namespace EFCoreMovies.Entities.Seeding
             var robertDowney = new Actor() { Id = 3, Name = "Robert Downey Jr.", DateOfBirth = new DateTime(1965, 4, 4), Biography = "Robert John Downey Jr. (born April 4, 1965) is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career." };
             var chrisEvans = new Actor() { Id = 4, Name = "Chris Evans", DateOfBirth = new DateTime(1981, 06, 13) };
             var laRoca = new Actor() { Id = 5, Name = "Dwayne Johnson", DateOfBirth = new DateTime(1972, 5, 2) };
+            var tibRC = new Actor() { Id = 9, Name = "TiberiusRC", DateOfBirth = new DateTime(1978, 7, 12) };
             var auliCravalho = new Actor() { Id = 6, Name = "Auli'i Cravalho", DateOfBirth = new DateTime(2000, 11, 22) };
             var scarlettJohansson = new Actor() { Id = 7, Name = "Scarlett Johansson", DateOfBirth = new DateTime(1984, 11, 22) };
             var keanuReeves = new Actor() { Id = 8, Name = "Keanu Reeves", DateOfBirth = new DateTime(1964, 9, 2) };
 
             modelBuilder.Entity<Actor>().HasData(tomHolland, samuelJackson,
-                            robertDowney, chrisEvans, laRoca, auliCravalho, scarlettJohansson, keanuReeves);
+                            robertDowney, chrisEvans, laRoca, tibRC, auliCravalho, scarlettJohansson, keanuReeves);
 
             //Seed for Cinema by Geo location.
 
@@ -240,6 +241,13 @@ namespace EFCoreMovies.Entities.Seeding
                 Order = 3,
                 Character = "Black Widow"
             };
+            var tibRCMatrix = new MovieActor
+            {
+                ActorId = tibRC.Id,
+                MovieId = theMatrixResurrections.Id,
+                Order = 1,
+                Character = "Wierdo lurker"
+            };
 
             var tomHollandFFH = new MovieActor
             {
@@ -268,7 +276,7 @@ namespace EFCoreMovies.Entities.Seeding
             modelBuilder.Entity<Movie>().HasData(avengers, coco, noWayHome, farFromHome, theMatrixResurrections);
 
             modelBuilder.Entity<MovieActor>().HasData(samuelJacksonFFH, tomHollandFFH,
-                tomHollandNWH, avengersRobertDowney, avengersScarlettJohansson,
+                tomHollandNWH, avengersRobertDowney, tibRCMatrix, avengersScarlettJohansson,
                 avengersChrisEvans, keanuReevesMatrix);
 
         }
