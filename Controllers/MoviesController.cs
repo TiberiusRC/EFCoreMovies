@@ -78,7 +78,7 @@ namespace EFCoreMovies.Controllers
 
             return Ok(movieDTO);
         }
-
+        // Not Recommended , because it slows everything and is inefficient
         [HttpGet("explicitLoading/{id:int}")]
         public async Task<ActionResult<MovieDTO>> GetExplicit(int id)
         {
@@ -100,7 +100,7 @@ namespace EFCoreMovies.Controllers
                 GenresCount = genresCount
             });
         }
-
+        // only use in Dev , because it slows everything and is inefficient (also called n+1 problem)
         [HttpGet("lazyloading/{id:int}")]
         public async Task<ActionResult<MovieDTO>> GetLazyLoading(int id)
         {
