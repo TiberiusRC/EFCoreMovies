@@ -10,16 +10,17 @@ namespace EFCoreMovies.Controllers
 {
     [ApiController]
     [Route("api/actors")]
-    public class ActorController : ControllerBase
+    public class ActorsController : ControllerBase
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
 
-        public ActorController(ApplicationDbContext context,IMapper mapper)
+        public ActorsController(ApplicationDbContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
         }
+
         [HttpGet]
         public async Task<IEnumerable<ActorDTO>> Get(int page = 1, int recordsToTake = 2)
         {
@@ -28,6 +29,12 @@ namespace EFCoreMovies.Controllers
                 .ProjectTo<ActorDTO>(mapper.ConfigurationProvider)
                 .Paginate(page, recordsToTake)
                 .ToListAsync();
+        }
+
+        [HttpGet("ids")]
+        public async Task<IEnumerable<int>> GetIds()
+        {
+            return await context.Actors.Select(a => a.Id).ToListAsync();
         }
     }
 }

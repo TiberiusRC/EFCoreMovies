@@ -1,5 +1,6 @@
 ﻿using EFCoreMovies.Entities;
 using EFCoreMovies.Entities.Seeding;
+using EFCoreMovies.Entities.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
