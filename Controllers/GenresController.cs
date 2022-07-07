@@ -17,29 +17,13 @@ namespace EFCoreMovies.Controllers
         }
         // Good practice is to always use Async when using IO operations in this method.
         [HttpGet]
-        public async Task<IEnumerable<Genre>> Get(int page = 1, int recordsToTake = 2)
+        public async Task<IEnumerable<Genre>> Get()
         {
             return await context.Genres.AsNoTracking()
                 .OrderBy(g => g.Name)
-                .Paginate(page, recordsToTake)
                 .ToListAsync();
-        }
-        [HttpGet("first")]
-        public async Task<ActionResult<Genre>> GetFirst()
-        {
-            var genre = await context.Genres.FirstOrDefaultAsync(g=>g.Name.Contains("z"));
-            if (genre is null)
-            {
-                return NotFound();
-            }
-            return genre;
+        }       
 
-        }
-        [HttpGet("filter")]
-        public async Task<IEnumerable<Genre>> Filter(string name)
-        {
-            return await context.Genres.Where(g => g.Name.Contains(name)).ToListAsync();
-        }
 
     }
 }
