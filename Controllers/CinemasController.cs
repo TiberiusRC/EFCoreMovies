@@ -73,7 +73,18 @@ namespace EFCoreMovies.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-        //Endpoint to return cinema data
+                
+        [HttpPost("withDTO")]
+        public async Task<ActionResult> Post(CinemaCreationDTO cinemaCreationDTO)
+        {
+            var cinema = mapper.Map<Cinema>(cinemaCreationDTO);
+            context.Add(cinema);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+
+
+        //Endpoint to return multiple items together ( cinema,cinemHall and cinemaOffer)
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
@@ -90,16 +101,6 @@ namespace EFCoreMovies.Controllers
         }
 
 
-
-        
-        [HttpPost("withDTO")]
-        public async Task<ActionResult> Post(CinemaCreationDTO cinemaCreationDTO)
-        {
-            var cinema = mapper.Map<Cinema>(cinemaCreationDTO);
-            context.Add(cinema);
-            await context.SaveChangesAsync();
-            return Ok();
-        }
         // Endpoint to update multiple items together ( cinema,cinemHall and cinemaOffer)
         [HttpPut("{id:int}")]
         public async Task<ActionResult>Put(CinemaCreationDTO cinemaCreationDTO ,int id)
@@ -112,6 +113,7 @@ namespace EFCoreMovies.Controllers
             {
                 return NotFound();
             }
+            //This will handle all the use cases
             cinemaDB = mapper.Map(cinemaCreationDTO, cinemaDB);
             await context.SaveChangesAsync();
             return Ok();
