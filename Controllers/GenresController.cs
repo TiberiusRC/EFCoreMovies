@@ -59,7 +59,7 @@ namespace EFCoreMovies.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-        //Endpoint api for soft deleting genres by id (hiding from view
+        //Endpoint api for soft deleting genres by id (hiding from view)
         [HttpDelete("softdelete/{id:int}")]
         public async Task<ActionResult> SoftDelete(int id)
         {
@@ -69,6 +69,19 @@ namespace EFCoreMovies.Controllers
                 return NotFound();
             }
             genre.IsDeleted = true;
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+        //Endpoint api for restoring ,soft deleted genres by id (bringing back in to view)
+        [HttpPost("restore/{id:int}")]
+        public async Task<ActionResult> Restore(int id)
+        {
+            var genre = await context.Genres.IgnoreQueryFilters().FirstOrDefaultAsync(p => p.Id == id);
+            if (genre is null)
+            {
+                return NotFound();
+            }
+            genre.IsDeleted = false;
             await context.SaveChangesAsync();
             return Ok();
         }
