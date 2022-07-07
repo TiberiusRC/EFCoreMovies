@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string Name { get; set; }
         //Navigation property to Movie (foreignkey)(many to many relation)
+        public bool IsDeleted { get; set; }
         public HashSet<Movie> Movies { get; set; }
     }
 }
