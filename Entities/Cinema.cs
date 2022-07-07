@@ -12,6 +12,7 @@ namespace EFCoreMovies.Entities
         public CinemaOffer CinemaOffer { get; set; }
         //Hashset might cause issues with the order , ifso then use List.( one to many relation)
         public HashSet<CinemaHall>CinemaHall { get; set; }
+        public Address Address { get; set; }
 
 
     }

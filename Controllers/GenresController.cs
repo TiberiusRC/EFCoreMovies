@@ -23,6 +23,8 @@ namespace EFCoreMovies.Controllers
         [HttpGet]
         public async Task<IEnumerable<Genre>> Get()
         {
+            context.Logs.Add(new Log { Message = "Executing Get from GenresController!" });
+            await context.SaveChangesAsync();   
             return await context.Genres.AsNoTracking()                
                 .OrderBy(g => g.Name)
                 .ToListAsync();
@@ -85,7 +87,7 @@ namespace EFCoreMovies.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-
+        
 
     }
 }

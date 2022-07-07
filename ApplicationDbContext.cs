@@ -28,6 +28,9 @@ namespace EFCoreMovies
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             M3Seeding.Seed(modelBuilder);
 
+            // This ensure that no tables or extra columns will be created in the database , but will be usable.(same as [NotMapped] in the class itself.
+            modelBuilder.Ignore<Address>();
+
         }
         //Setting the Entities(in plural) ( So that the tables are also queryable)
         public DbSet<Genre>Genres{get;set;}
@@ -37,5 +40,6 @@ namespace EFCoreMovies
         public DbSet<CinemaOffer> CinemaOffers { get; set; }
         public DbSet<CinemaHall>CinemaHalls { get; set; }
         public DbSet<MovieActor> MovieActors { get; set; }
+        public DbSet<Log>Logs { get; set; }
     }
 }
