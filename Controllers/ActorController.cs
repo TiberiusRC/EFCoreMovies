@@ -37,7 +37,7 @@ namespace EFCoreMovies.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-        //Selecting and updating records with api endpoint.
+        //Selecting and updating records with api endpoint.(with connected model method)
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Put(ActorCreationDTO actorCreationDTO,int id)
         {
@@ -47,6 +47,22 @@ namespace EFCoreMovies.Controllers
                 return NotFound();
             }
             actorDB = mapper.Map(actorCreationDTO, actorDB);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+        //Selecting and updating records with api endpoint. (with Disconnected model method)
+        [HttpPut("disconnected/{id:int}")]
+        public async Task<ActionResult> PutDisconnected(ActorCreationDTO actorCreationDTO, int id)
+        {   // check to see if actor already exists
+            var existsActor = await context.Actors.AnyAsync(p => p.Id == id);
+            if (!existsActor)
+            {
+                return NotFound();
+            }
+            //updater the actor                         
+            var actor = mapper.Map<Actor>(actorCreationDTO);
+            actor.Id = id;
+            context.Update(actor);
             await context.SaveChangesAsync();
             return Ok();
         }
