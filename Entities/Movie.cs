@@ -8,10 +8,10 @@
         public DateTime ReleaseDate { get; set; }
         public string PosterUrl { get; set; }
         //Navigation property to Genre (foreignkey)(many to many relation)
-        public HashSet<Genre>Genres { get; set; }
+        public List<Genre>Genres { get; set; }
         //Navigation property to CinemaHall (Foreign key)
-        public HashSet<CinemaHall>CinemaHalls{ get; set; }
+        public List<CinemaHall>CinemaHalls{ get; set; }
         //Navigation property to MovieActor (Foreign key)(non skip method)
-        public HashSet<MovieActor> MovieActors { get; set; }
+        public List<MovieActor> MovieActors { get; set; }
     }
 }

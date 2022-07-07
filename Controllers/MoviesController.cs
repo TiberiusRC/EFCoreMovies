@@ -43,10 +43,21 @@ namespace EFCoreMovies.Controllers
         {
             var movie =mapper.Map<Movie>(movieCreationDTO);
 
+            movie.Genres
+                .ForEach(g=> context.Entry(g).State=EntityState.Unchanged);
+            movie.CinemaHalls
+                .ForEach(ch => context.Entry(ch).State = EntityState.Unchanged);
 
-
-
-            context.Add(movie);//?
+            if(movie.MovieActors is not null)
+            {
+                for (int i = 0; i < movie.MovieActors.Count; i++)
+                {
+                    movie.MovieActors[i].Order = i + 1;
+                }
+            }
+            context.Add(movie);
+            await context.SaveChangesAsync();
+            return Ok();
 
         }
 
