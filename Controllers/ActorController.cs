@@ -37,6 +37,19 @@ namespace EFCoreMovies.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
+        //Selecting and updating records with api endpoint.
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(ActorCreationDTO actorCreationDTO,int id)
+        {
+            var actorDB = await context.Actors.FirstOrDefaultAsync(p => p.Id == id);
+            if (actorDB is null)
+            {
+                return NotFound();
+            }
+            actorDB = mapper.Map(actorCreationDTO, actorDB);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
 
 
     }

@@ -46,9 +46,5 @@ namespace EFCoreMovies.Controllers
             return Ok();
            
         }
-
-
-
-
     }
 }
