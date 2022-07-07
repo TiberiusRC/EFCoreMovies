@@ -9,6 +9,8 @@ namespace EFCoreMovies.Entities.Configurations
         {
             //Creation of Genre entity
             builder.Property(p => p.Name).IsRequired();
+            //A filter for soft delete
+            builder.HasQueryFilter(g=>!g.IsDeleted);
         }
     }
 }

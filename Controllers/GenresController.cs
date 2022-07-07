@@ -23,8 +23,7 @@ namespace EFCoreMovies.Controllers
         [HttpGet]
         public async Task<IEnumerable<Genre>> Get()
         {
-            return await context.Genres.AsNoTracking()
-                .Where(p=>!p.IsDeleted)
+            return await context.Genres.AsNoTracking()                
                 .OrderBy(g => g.Name)
                 .ToListAsync();
         }
