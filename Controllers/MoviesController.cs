@@ -38,6 +38,17 @@ namespace EFCoreMovies.Controllers
 
             return movieDTO;
         }
+        [HttpPost]
+        public async Task<ActionResult> Post(MovieCreationDTO movieCreationDTO)
+        {
+            var movie =mapper.Map<Movie>(movieCreationDTO);
+
+
+
+
+            context.Add(movie);//?
+
+        }
 
         
     }
