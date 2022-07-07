@@ -24,3 +24,9 @@ He does this in a step by step process and not only explains the ***Where*** and
 * Advanced Scenarios
 * Automatic Tests
 * ASP.NET Core and EF Core
+
+Initial DataBase relations :
+
+
+
+![Initial DataBase relations](https://github.com/TiberiusRC/EFCoreMovies/blob/master/Diagram.jpg)
