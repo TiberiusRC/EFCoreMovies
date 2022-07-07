@@ -100,7 +100,7 @@ namespace EFCoreMovies.Controllers
                 GenresCount = genresCount
             });
         }
-        // only use in Dev , because it slows everything and is inefficient (also called n+1 problem)
+        // only use in Dev , because it slows everything and is inefficient (also called n+1 problem) ( https://stackoverflow.com/a/39696775 )
         [HttpGet("lazyloading/{id:int}")]
         public async Task<ActionResult<MovieDTO>> GetLazyLoading(int id)
         {
