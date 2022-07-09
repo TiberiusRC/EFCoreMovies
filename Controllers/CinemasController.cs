@@ -134,6 +134,21 @@ namespace EFCoreMovies.Controllers
             return Ok();
         }
 
+        //Endpoint to remove a Cinema
+        [HttpDelete("Remove a Cinema{id:int}")]
+        public async Task<ActionResult>Delete(int id)
+        {
+            var cinema = await context.Cinemas.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (cinema is null)
+            {
+                return NotFound();
+            }
+            context.Remove(cinema);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+
 
     }
 }
