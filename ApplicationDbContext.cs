@@ -28,6 +28,7 @@ namespace EFCoreMovies
             //Implementing the modelbuilder files:
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             M3Seeding.Seed(modelBuilder);
+            M6Seeding.Seed(modelBuilder);
 
             // This ensure that no tables or extra columns will be created in the database , but will be usable.(same as [NotMapped] in the class itself.
             modelBuilder.Ignore<Address>();
@@ -62,5 +63,7 @@ namespace EFCoreMovies
         public DbSet<CinemaHall>CinemaHalls { get; set; }
         public DbSet<MovieActor> MovieActors { get; set; }
         public DbSet<Log>Logs { get; set; }
+        public DbSet<Person>People { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }
