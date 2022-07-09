@@ -49,6 +49,27 @@ namespace EFCoreMovies
             //        }
             //    }
             //}
+            modelBuilder.Entity<Merchandising>().ToTable("Merchandising");
+            modelBuilder.Entity<RentableMovie>().ToTable("RentableMovies");
+            var movie1 = new RentableMovie()
+            {
+                Id = 1,
+                Name = "Starship Troopers",
+                MovieId = 1,
+                Price = 9.99m,
+            };
+            var merch1 = new Merchandising()
+            {
+                Id = 2,
+                Available = true,
+                IsClothing = true,
+                Name = "Tigerstriped goat wool , thong",
+                Weight = 1,
+                Volume = 1,
+                Price = 21
+            };
+            modelBuilder.Entity<Merchandising>().HasData(merch1);
+            modelBuilder.Entity<RentableMovie>().HasData(movie1);
 
 
 
@@ -67,6 +88,7 @@ namespace EFCoreMovies
         public DbSet<Message> Messages { get; set; }
         public DbSet<CinemaDetail>CinemaDetails { get; set; }
         public DbSet<Payment>Payments { get; set; }
+        public DbSet<Product>Products { get; set; } 
 
     }
 }
