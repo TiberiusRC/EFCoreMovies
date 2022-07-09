@@ -3,6 +3,7 @@ using EFCoreMovies.Entities.Seeding;
 using EFCoreMovies.Entities.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using EFCoreMovies.Entities.Keyless;
 
 namespace EFCoreMovies
 {
@@ -30,6 +31,9 @@ namespace EFCoreMovies
 
             // This ensure that no tables or extra columns will be created in the database , but will be usable.(same as [NotMapped] in the class itself.
             modelBuilder.Ignore<Address>();
+
+            //This is for a keyless entitie....
+            modelBuilder.Entity<CinemaWithoutLocation>().ToSqlQuery("Select Id , Name FROM Cinemas").ToView(null);
 
         }
         //Setting the Entities(in plural) ( So that the tables are also queryable)

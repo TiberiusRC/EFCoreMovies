@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using EFCoreMovies.DTOs;
 using EFCoreMovies.Entities;
+using EFCoreMovies.Entities.Keyless;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetTopologySuite;
@@ -26,6 +27,19 @@ namespace EFCoreMovies.Controllers
         {
             return await context.Cinemas.ProjectTo<CinemaDTO>(mapper.ConfigurationProvider).ToListAsync();
         }
+
+        // A api endpoint for a keyless entity
+        [HttpGet("withoutLocation")]
+        public async Task<IEnumerable<CinemaWithoutLocation>> GetWithoutLocation()
+        {   // Set<>() is an example to create a DBSet without going to ApplicationDbContext and adding it there.
+            return await context.Set<CinemaWithoutLocation>().ToListAsync();
+        }
+
+
+
+
+
+
         [HttpGet("closetome")]
         public async Task<ActionResult>Get(double latitude,double longitude)
         {
