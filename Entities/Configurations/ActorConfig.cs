@@ -10,6 +10,8 @@ namespace EFCoreMovies.Entities.Configurations
             //Creation of Actor entity
             builder.Property(p => p.Name).IsRequired();
             builder.Property(p => p.Biography).HasColumnType("nvarchar(max)");
+
+
         }
     }
 }

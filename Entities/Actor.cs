@@ -44,6 +44,7 @@ namespace EFCoreMovies.Entities
 
         //Navigation property to MovieActor (Foreign key)(non skip method)
         public HashSet<MovieActor> MovieActors { get; set; }
-        public Address Address { get; set; }
+        public Address BillingAddress { get; set; }
+        public Address HomeAddress { get; set; }
     }
 }
