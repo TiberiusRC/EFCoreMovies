@@ -35,19 +35,19 @@ namespace EFCoreMovies
             //This is for a keyless entitie....
             modelBuilder.Entity<CinemaWithoutLocation>().ToSqlQuery("Select Id , Name FROM Cinemas").ToView(null);
 
-            //Automatic config with fluent api lesson.for configuring URL entries
-            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-            {
-                //iterate through properties
-                foreach (var property in entityType.GetProperties())
-                {
-                    if (property.ClrType==typeof(string)
-                        && property.Name.Contains("URL",StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        property.SetIsUnicode(false);
-                    }
-                }
-            }
+            //Automatic config with fluent api lesson.for configuring URL entries (No longer needed in module 6 , kept for future referrence)
+            //foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            //{
+            //    //iterate through properties
+            //    foreach (var property in entityType.GetProperties())
+            //    {
+            //        if (property.ClrType==typeof(string)
+            //            && property.Name.Contains("URL",StringComparison.CurrentCultureIgnoreCase))
+            //        {   //With this any URL will not be of type unicode but varchar
+            //            property.SetIsUnicode(false);
+            //        }
+            //    }
+            //}
 
 
 
