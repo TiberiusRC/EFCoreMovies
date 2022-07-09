@@ -68,6 +68,13 @@ namespace EFCoreMovies.Controllers
             {
                 Name = "My cinema",
                 Location = cinemaLocation,
+                CinemaDetail = new CinemaDetail()
+                {
+                    History = "the History....",
+                    Missions = "No Missions here !",
+                    CodeOfConduct = "There is no such thing here !",
+                    Values = "It's a free for all here , Good luck!"
+                },
                 CinemaOffer = new CinemaOffer()
                 {
                     DiscountPercentage = 5,
@@ -106,6 +113,7 @@ namespace EFCoreMovies.Controllers
             var cinemaDB = await context.Cinemas
                .Include(c => c.CinemaHall)
                .Include(c => c.CinemaOffer)
+               .Include(c=>c.CinemaDetail)
                .FirstOrDefaultAsync(c => c.Id == id);
             if (cinemaDB is null)
             {

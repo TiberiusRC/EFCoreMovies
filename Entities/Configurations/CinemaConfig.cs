@@ -13,8 +13,10 @@ namespace EFCoreMovies.Entities.Configurations
             // Example of a one to one relation with fluent api
             builder.HasOne(c => c.CinemaOffer).WithOne().HasForeignKey<CinemaOffer>(co => co.CinemaId);// after WithOne() is optional....
             // Example of a one to many relation with fluent api
-            builder.HasMany(c => c.CinemaHall).WithOne(ch => ch.Cinema);
+            builder.HasMany(c => c.CinemaHall).WithOne(ch => ch.Cinema).HasForeignKey(ch => ch.CinemaId);//.OnDelete(DeleteBehavior.Restrict); to restrict deletion before other relation have been deleted
 
+            //Relation to cinemadetail with nav prop and foreignkey
+            builder.HasOne(c => c.CinemaDetail).WithOne(c => c.Cinema).HasForeignKey<CinemaDetail>(cd => cd.Id);
 
         }
     }
