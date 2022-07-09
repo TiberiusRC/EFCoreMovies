@@ -26,9 +26,31 @@ namespace EFCoreMovies.Controllers
             context.Logs.Add(new Log { Message = "Executing Get from GenresController!" });
             await context.SaveChangesAsync();   
             return await context.Genres.AsNoTracking()                
-                .OrderBy(g => g.Name)
+                //.OrderBy(g => g.Name)
+                .OrderByDescending(g=> EF.Property<DateTime>(g,"CreatedDate"))//Ordered by date , through shadow property
                 .ToListAsync();
         }
+
+
+        [HttpGet("{id:int} Shadow prop lesson")]
+        public async Task<ActionResult<Genre>>Get(int id)
+        {
+            var genre = await context.Genres.FirstOrDefaultAsync(p => p.Id == id);
+            if(genre is null)
+            {
+                return NotFound();
+            }
+            //context.Entry() is to access metadata in this case the shadowproperties
+            var createdDate = context.Entry(genre).Property<DateTime>("CreatedDate").CurrentValue;
+            return Ok(new
+            {
+                Id = genre.Id,
+                Name = genre.Name,
+                CreatedDate = createdDate
+            });
+        }
+
+
         [HttpPost]
         public async Task<ActionResult>Post(GenreCreationDTO genreCreationDTO)
         {

@@ -18,6 +18,11 @@ namespace EFCoreMovies.Entities.Configurations
             //Another way of making a index for a property and has a filter in it. In case of soft deleted Genre entry.
             builder.HasIndex(p => p.Name).IsUnique().HasFilter("IsDeleted = 'false'");
 
+            //Shadow properties lesson(to create a datetime column in de database with the creation date of each NEW genre entry to acces this goto GenresController.cs
+            builder.Property<DateTime>("CreatedDate").HasDefaultValueSql("GetDate()").HasColumnType("datetime2");
+
+
+
         }
 
 

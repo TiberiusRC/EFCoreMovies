@@ -22,6 +22,8 @@ namespace EFCoreMovies.Controllers
             this.context = context;
             this.mapper = mapper;
         }
+
+
         [HttpGet]
         public async Task<IEnumerable<CinemaDTO>>Get()
         {
@@ -34,10 +36,6 @@ namespace EFCoreMovies.Controllers
         {   // Set<>() is an example to create a DBSet without going to ApplicationDbContext and adding it there.
             return await context.Set<CinemaWithoutLocation>().ToListAsync();
         }
-
-
-
-
 
 
         [HttpGet("closetome")]
@@ -57,6 +55,8 @@ namespace EFCoreMovies.Controllers
             return Ok(cinemas);
                 
         }
+
+
         [HttpPost]
         public async Task<ActionResult>Post()
         {
@@ -87,6 +87,7 @@ namespace EFCoreMovies.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
+
                 
         [HttpPost("withDTO")]
         public async Task<ActionResult> Post(CinemaCreationDTO cinemaCreationDTO)
