@@ -9,6 +9,13 @@ namespace EFCoreMovies.Entities.Configurations
         {
             //Creation of Cinema entity
             builder.Property(p => p.Name).IsRequired();
+
+            // Example of a one to one relation with fluent api
+            builder.HasOne(c => c.CinemaOffer).WithOne().HasForeignKey<CinemaOffer>(co => co.CinemaId);// after WithOne() is optional....
+            // Example of a one to many relation with fluent api
+            builder.HasMany(c => c.CinemaHall).WithOne(ch => ch.Cinema);
+
+
         }
     }
 }
