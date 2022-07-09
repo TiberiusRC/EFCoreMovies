@@ -32,6 +32,13 @@ namespace EFCoreMovies.Controllers
         [HttpPost]
         public async Task<ActionResult>Post(GenreCreationDTO genreCreationDTO)
         {
+            // Genre name was indexed and declared unique , this is to check for duplicate entry. See index at Genre.cs or Genreconfig.cs
+            var genreExists = await context.Genres.AnyAsync(p=>p.Name == genreCreationDTO.Name);
+            if (genreExists)
+            {
+                return BadRequest($"This Genre name already exists , Name = {genreCreationDTO.Name}");
+            }
+
             var genre = mapper.Map<Genre>(genreCreationDTO);
             context.Add(genre);//marking genre as added.not directly posting in db           
             await context.SaveChangesAsync();//apply changes to Db            
