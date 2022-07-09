@@ -2,7 +2,7 @@
 
 namespace EFCoreMovies.Entities
 {   //Creates specific index of property and will be unique
-    [Index(nameof(Name),IsUnique=true)]
+    //[Index(nameof(Name),IsUnique=true)]
     public class Genre
     {
 
