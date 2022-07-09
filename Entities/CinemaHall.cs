@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public CinemaHallType CinemaHallType { get; set; }
         public decimal Cost { get; set; }
+        public Currency Currency { get; set; }
         //Navigation property to Cinema(Foreign key)
         public int CinemaId { get; set; }
         //Optional for ease of query's
