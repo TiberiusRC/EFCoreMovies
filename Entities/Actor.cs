@@ -34,6 +34,8 @@ namespace EFCoreMovies.Entities
                 return age;
             }}
 
+        public string PictureURL { get; set; }
+
         //Navigation property to MovieActor (Foreign key)(non skip method)
         public HashSet<MovieActor> MovieActors { get; set; }
         public Address Address { get; set; }
