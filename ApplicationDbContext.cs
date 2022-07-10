@@ -25,7 +25,7 @@ namespace EFCoreMovies
         {
             base.OnModelCreating(modelBuilder);  
             //All modelbuilder files have been moved to their seperate Config files in the Configurations folder  to reduce code                 
-            //Implementing the modelbuilder files:
+            //Implementing the modelbuilder files: And applying seed data
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             M3Seeding.Seed(modelBuilder);
             M6Seeding.Seed(modelBuilder);
