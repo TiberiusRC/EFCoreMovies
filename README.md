@@ -30,3 +30,6 @@ Initial DataBase relations :
 
 
 ![Initial DataBase relations](https://github.com/TiberiusRC/EFCoreMovies/blob/master/Diagram.jpg)
+
+
+Added Module 8 & 9 in the SeperateModules folder , either exclude or delete them in visual studio if they are not used.
